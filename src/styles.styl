@@ -1,0 +1,115 @@
+@import 'yeticss'
+@import url('https://fonts.googleapis.com/css?family=Fugaz+One|Montserrat')
+
+@media screen and (max-width: 600px)
+  .grid-flex-container.no-wrap
+    .grid-flex-cell
+      flex: 0 1 auto
+      
+header
+  padding-top: 30px
+  align-items: flex-end
+  
+  @media screen and (max-width: 600px)
+    justify-content: center
+    
+    .heart-points
+      padding-top: 0px
+
+html
+  height: auto
+
+body
+  font-family: 'Montserrat', sans-serif
+  color: #4d5659
+  background: url('./geometry.png')
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+textarea
+  font-family: 'Montserrat', sans-serif
+  color: #4d5659
+  
+textarea
+  font-size: 22px
+  
+.form-input
+  margin-bottom: 0px
+
+.container
+  background: white;
+  border: 10px solid $gray-lighter
+  margin-top: 30px
+  padding: 0 30px
+  max-width: 650px
+
+.heart-points
+  text-align: right
+
+  span
+    color: $pink
+    
+.heart-points.animate
+  animation: beat .1s 2 alternate
+  transform-origin: center
+
+@keyframes beat {
+  to { transform: scale(1.1) }
+}
+
+.pet-box
+  @media screen and (max-width: 600px)
+    // for mobile show buttons at bottom
+    flex-direction: column-reverse
+    
+.dialog-box-mobile,
+.status-box-mobile
+  display: none
+  
+  @media screen and (max-width: 600px)
+    display: flex
+  
+.dialog-box,
+.status-box
+  @media screen and (max-width: 600px)
+    display: none
+    
+.status-box,
+.status-box-mobile
+  text-align: center
+  justify-content: center
+  padding-top: 10px
+  
+  > *
+    margin-bottom: 0px
+
+.status
+  &-good
+    color: $green
+  &-bad
+    color: $red
+  &-neutral
+    color: $gray
+
+.pet-main
+  text-align: center
+  padding-top: 0px
+
+  img
+    max-width: 80%
+    margin-bottom: 10px
+    user-select: none
+    
+.pet-action
+  padding-top: 0px
+  min-width: 120px
+
+  .button
+    margin: 30px 0px
+    padding: 10px 0px
+    display: block
+    width: 100%
