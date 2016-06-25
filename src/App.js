@@ -1,33 +1,12 @@
 import React from 'react';
-const PET_HAPPY = require('./pet1.png');
-const PET_SAD = require('./pet1.png');
-const PET_DEAD = require('./pet1.png');
 
-const PET_NAME = 'Shoyru';
-
-const INIT = {
-  numHeartsToWin: 25,
-  numHearts: 20,
-  petState: 'happy',
-  dialogMessage: 'Hello!',
-  winMessage: `${PET_NAME} is a happy pet. You win!`,
-};
-
-const BUTTON_ACTIONS = ['food', 'drink', 'play', 'talk'];
-const BAD_STATES = ['hungry', 'thirsty', 'lonely', 'lonely'];
-const GOOD_STATES = ['happy'];
-const NEUTRAL_STATES = ['pretty ok'];
-
-const messages = {
-  food: 'Yummy! Thank you for feeding me.',
-  drink: 'Thanks! I was really thirsty.',
-  play: 'Wooooooooh!',
-  talk: ['Aaaaaaaaaa.', 'Blah blah blee blah bloop.', 'Coo coo cachoo.']
-}
+let CONFIG = {};
 
 class App extends React.Component {
   constructor () {
     super();
+
+    window.PetBox.call(CONFIG);
 
     this._onClickActionButton = this._onClickActionButton.bind(this);
     this._onClickModalButton = this._onClickModalButton.bind(this);
@@ -35,11 +14,11 @@ class App extends React.Component {
     this._removeAnimation = this._removeAnimation.bind(this);
 
     this.state = {
-      numHeartsToWin: INIT.numHeartsToWin,
-      numHearts: INIT.numHearts,
-      petState: INIT.petState,
-      dialogMessage: INIT.dialogMessage,
-      winMessage: INIT.winMessage,
+      numHeartsToWin: CONFIG.NUM_HEARTS_TO_WIN,
+      numHearts: CONFIG.NUM_HEARTS,
+      petState: CONFIG.PET_STATE,
+      dialogMessage: CONFIG.DIALOG_MESSAGE,
+      winMessage: CONFIG.WIN_MESSAGE,
       isModalOpen: false,
       isGameOver: false,
       animateHeart: false
@@ -71,10 +50,10 @@ class App extends React.Component {
   _decrementHearts () {
     let { numHearts, petState } = this.state;
 
-    if (numHearts <= INIT.numHearts) {
-      if (BAD_STATES.indexOf(petState) === -1) {
-        const randomIndex = Math.floor(Math.random() * BAD_STATES.length);
-        this._updatePetState(BAD_STATES[randomIndex]);
+    if (numHearts <= CONFIG.NUM_HEARTS) {
+      if (CONFIG.BAD_STATES.indexOf(petState) === -1) {
+        const randomIndex = Math.floor(Math.random() * CONFIG.BAD_STATES.length);
+        this._updatePetState(CONFIG.BAD_STATES[randomIndex]);
       }
     }
 
@@ -114,8 +93,8 @@ class App extends React.Component {
 
   _shouldIncrementHearts (action) {
     const { petState } = this.state;
-    const actionIndex = BUTTON_ACTIONS.indexOf(action);
-    const badPetStateIndex = BAD_STATES.indexOf(petState);
+    const actionIndex = CONFIG.BUTTON_ACTIONS.indexOf(action);
+    const badPetStateIndex = CONFIG.BAD_STATES.indexOf(petState);
 
     // checks if current petState is neutral/good,
     // or if proper action is being taken for bad state
@@ -129,7 +108,7 @@ class App extends React.Component {
       return;
     }
 
-    let updatedMessage = messages[action] || 'Hello!';
+    let updatedMessage = CONFIG.MESSAGES[action] || 'Hello!';
     if (updatedMessage instanceof Array) {
       const randomIndex = Math.floor(Math.random() * updatedMessage.length);
       updatedMessage = updatedMessage[randomIndex];
@@ -138,10 +117,10 @@ class App extends React.Component {
     if (this._shouldIncrementHearts(action)) {
       numHearts++;
 
-      if (numHearts >= INIT.numHearts) {
-        this._updatePetState(GOOD_STATES[0]);
+      if (numHearts >= CONFIG.NUM_HEARTS) {
+        this._updatePetState(CONFIG.GOOD_STATES[0]);
       } else {
-        this._updatePetState(NEUTRAL_STATES[0]);
+        this._updatePetState(CONFIG.NEUTRAL_STATES[0]);
       }
 
       this.setState({
@@ -195,13 +174,12 @@ class App extends React.Component {
     }
 
     let statusClass = 'status-neutral';
-    let petImage = PET_HAPPY;
-    if (GOOD_STATES.indexOf(petState) !== -1) {
+    let petImage = CONFIG.PET_HAPPY;
+    if (CONFIG.GOOD_STATES.indexOf(petState) !== -1) {
       statusClass = 'status-good';
-    } else if (BAD_STATES.indexOf(petState) !== -1) {
+    } else if (CONFIG.BAD_STATES.indexOf(petState) !== -1) {
       statusClass = 'status-bad';
-      petImage = PET_SAD;
-      console.log('pet image should be sad');
+      petImage = CONFIG.PET_SAD;
     }
 
     let heartAnimationClass = animateHeart ? 'animate' : '';
