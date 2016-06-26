@@ -194,7 +194,7 @@ class App extends React.Component {
       <div className={containerClass}>
         <header className="grid-flex-container no-wrap" role="banner">
           <div className="grid-flex-cell">
-            <h1>PetBox</h1>
+            <h1>{(CONFIG.MY_NAME) ? `${CONFIG.MY_NAME}'s PetBox` : 'PetBox'}</h1>
           </div>
           <div ref="heartPointsEl" className={`grid-flex-cell grid-flex-cell-1of4 heart-points ${heartAnimationClass}`}>
             <h1>{numHearts} <span dangerouslySetInnerHTML={{ __html: CONFIG.ASCII_ICON }}></span></h1>

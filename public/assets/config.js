@@ -20,6 +20,7 @@ PetBox = function () {
 
   // addPetDialogForAction('talk', `I'm Shoyru!`);
 
+  this.MY_NAME = '';
   this.PET_HAPPY = './assets/pet1.png';
   this.PET_SAD = './assets/pet1.png';
   this.PET_NAME = 'Shoyru';
