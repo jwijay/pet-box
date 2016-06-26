@@ -31,7 +31,7 @@ class App extends React.Component {
     heartPointsEl.addEventListener('animationend', this._removeAnimation);
 
     if (!this._decrementInterval) {
-      this._decrementInterval = setInterval(this._decrementHearts, 2000);
+      this._decrementInterval = setInterval(this._decrementHearts, CONFIG.HEART_LOSS_SPEED);
     }
   }
 

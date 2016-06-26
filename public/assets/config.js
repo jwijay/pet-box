@@ -1,7 +1,6 @@
 PetBox = function () {
   this.PET_HAPPY = './assets/pet1.png';
   this.PET_SAD = './assets/pet1.png';
-  this.PET_DEAD = './assets/pet1.png';
   this.PET_NAME = 'Shoyru';
 
   this.BUTTON_ACTIONS = ['food', 'drink', 'play', 'talk'];
@@ -11,6 +10,7 @@ PetBox = function () {
 
   this.NUM_HEARTS_TO_WIN = 25;
   this.NUM_HEARTS = 20;
+  this.HEART_LOSS_SPEED = 2000; // in milliseconds (1/1000s)
   this.PET_STATE = this.GOOD_STATES[0];
   this.DIALOG_MESSAGE = 'Hello!';
   this.WIN_MESSAGE = `${this.PET_NAME} is a happy pet. You win!`;
