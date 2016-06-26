@@ -184,6 +184,12 @@ class App extends React.Component {
 
     let heartAnimationClass = animateHeart ? 'animate' : '';
 
+    // show/hide action buttons based on config function calls
+    const foodButtonHidden = (CONFIG.VISIBLE_BUTTONS.indexOf('food') !== -1) ? '' : 'hidden';
+    const drinkButtonHidden = (CONFIG.VISIBLE_BUTTONS.indexOf('drink') !== -1) ? '' : 'hidden';
+    const talkButtonHidden = (CONFIG.VISIBLE_BUTTONS.indexOf('talk') !== -1) ? '' : 'hidden';
+    const playButtonHidden = (CONFIG.VISIBLE_BUTTONS.indexOf('play') !== -1) ? '' : 'hidden';
+
     return (
       <div className={containerClass}>
         <header className="grid-flex-container no-wrap" role="banner">
@@ -191,23 +197,23 @@ class App extends React.Component {
             <h1>PetBox</h1>
           </div>
           <div ref="heartPointsEl" className={`grid-flex-cell grid-flex-cell-1of4 heart-points ${heartAnimationClass}`}>
-            <h1>{numHearts} <span>&hearts;</span></h1>
+            <h1>{numHearts} <span dangerouslySetInnerHTML={{ __html: CONFIG.ASCII_ICON }}></span></h1>
           </div>
         </header>
 
         <div className="grid-flex-container pet-box">
           <div className="grid-flex-cell grid-flex-cell-1of4 pet-action">
             <div>
-              <button className='button button-large button-approve' disabled={buttonIsDisabled} onClick={this._onClickActionButton.bind(this, 'food')}>Food</button>
+              <button className={`button button-large button-approve ${foodButtonHidden}`} disabled={buttonIsDisabled} onClick={this._onClickActionButton.bind(this, 'food')}>Food</button>
             </div>
             <div>
-              <button className='button button-large button-approve' disabled={buttonIsDisabled} onClick={this._onClickActionButton.bind(this, 'drink')}>Drink</button>
+              <button className={`button button-large button-approve ${drinkButtonHidden}`} disabled={buttonIsDisabled} onClick={this._onClickActionButton.bind(this, 'drink')}>Drink</button>
             </div>
             <div>
-              <button className='button button-large button-approve' disabled={buttonIsDisabled} onClick={this._onClickActionButton.bind(this, 'play')}>Play</button>
+              <button className={`button button-large button-approve ${playButtonHidden}`} disabled={buttonIsDisabled} onClick={this._onClickActionButton.bind(this, 'play')}>Play</button>
             </div>
             <div>
-              <button className='button button-large button-approve' disabled={buttonIsDisabled} onClick={this._onClickActionButton.bind(this, 'talk')}>Talk</button>
+              <button className={`button button-large button-approve ${talkButtonHidden}`} disabled={buttonIsDisabled} onClick={this._onClickActionButton.bind(this, 'talk')}>Talk</button>
             </div>
           </div>
 
