@@ -35,7 +35,6 @@ PetBox = function () {
   // see website for more ascii symbols:
   // http://jonsatrom.com/etc/hearts.html
   this.ASCII_ICON = '&hearts;';
-  this.PET_STATE = this.GOOD_STATES[0];
   this.DIALOG_MESSAGE = 'Hello!';
   this.WIN_MESSAGE = `${this.PET_NAME} is a happy pet. You win!`;
   this.MESSAGES = messages;

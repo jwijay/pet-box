@@ -16,7 +16,7 @@ class App extends React.Component {
     this.state = {
       numHeartsToWin: CONFIG.NUM_HEARTS_TO_WIN,
       numHearts: CONFIG.NUM_HEARTS,
-      petState: CONFIG.PET_STATE,
+      petState: CONFIG.GOOD_STATES[0],
       dialogMessage: CONFIG.DIALOG_MESSAGE,
       winMessage: CONFIG.WIN_MESSAGE,
       isModalOpen: false,
