@@ -7,25 +7,18 @@ PetBox = function () {
     talk: ['Aaaaaaaaaa.', 'Blah blah blee blah bloop.', 'Coo coo cachoo.']
   };
 
+  // This hides and shows buttons.
+  // Takes in a string corresponding to pet action (e.g. 'food', 'drink', 'play', 'talk').
   function addPetAction (buttonName) {
     visibleButtons.push(buttonName);
   }
 
   addPetAction('food');
   
-  function addPetDialogForAction (action, newPhrase) {
-    console.log('adding new phrase: ', newPhrase);
-    messages[action].push(newPhrase);
-  }
-
-  // addPetDialogForAction('talk', `I'm Shoyru!`);
-
   this.MY_NAME = '';
-  this.PET_HAPPY = './assets/pet1.png';
-  this.PET_SAD = './assets/pet1.png';
   this.PET_NAME = 'Shoyru';
 
-  this.BUTTON_ACTIONS = ['food', 'drink', 'play', 'talk'];
+  // BAD_STATES correspond to actions: 'food', 'drink', 'play', 'talk'
   this.BAD_STATES = ['hungry', 'thirsty', 'bored', 'lonely'];
   this.GOOD_STATES = ['happy'];
   this.NEUTRAL_STATES = ['pretty ok'];
@@ -38,6 +31,9 @@ PetBox = function () {
   this.ASCII_ICON = '&hearts;';
   this.DIALOG_MESSAGE = 'Hello!';
   this.WIN_MESSAGE = `${this.PET_NAME} is a happy pet. You win!`;
+  this.PET_HAPPY = './assets/happypet.png';
+  this.PET_SAD = './assets/sadpet.png';
+  
   this.MESSAGES = messages;
   this.VISIBLE_BUTTONS = visibleButtons;
 }

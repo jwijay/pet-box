@@ -1,6 +1,7 @@
 import React from 'react';
 
 let CONFIG = {};
+let BUTTON_ACTIONS = ['food', 'drink', 'play', 'talk'];
 
 class App extends React.Component {
   constructor () {
@@ -93,7 +94,7 @@ class App extends React.Component {
 
   _shouldIncrementHearts (action) {
     const { petState } = this.state;
-    const actionIndex = CONFIG.BUTTON_ACTIONS.indexOf(action);
+    const actionIndex = BUTTON_ACTIONS.indexOf(action);
     const badPetStateIndex = CONFIG.BAD_STATES.indexOf(petState);
 
     // checks if current petState is neutral/good,
@@ -118,9 +119,11 @@ class App extends React.Component {
       numHearts++;
 
       if (numHearts >= CONFIG.NUM_HEARTS) {
-        this._updatePetState(CONFIG.GOOD_STATES[0]);
+        const randomGoodIndex = Math.floor(Math.random() * CONFIG.GOOD_STATES.length);
+        this._updatePetState(CONFIG.GOOD_STATES[randomGoodIndex]);
       } else {
-        this._updatePetState(CONFIG.NEUTRAL_STATES[0]);
+        const randomNeutralIndex = Math.floor(Math.random() * CONFIG.NEUTRAL_STATES.length);
+        this._updatePetState(CONFIG.NEUTRAL_STATES[randomNeutralIndex]);
       }
 
       this.setState({
@@ -196,7 +199,7 @@ class App extends React.Component {
           <div className="grid-flex-cell">
             <h1>{(CONFIG.MY_NAME) ? `${CONFIG.MY_NAME}'s PetBox` : 'PetBox'}</h1>
           </div>
-          <div ref="heartPointsEl" className={`grid-flex-cell grid-flex-cell-1of4 heart-points ${heartAnimationClass}`}>
+          <div ref="heartPointsEl" className={`grid-flex-cell heart-points ${heartAnimationClass}`}>
             <h1>{numHearts} <span dangerouslySetInnerHTML={{ __html: CONFIG.ASCII_ICON }}></span></h1>
           </div>
         </header>
@@ -223,7 +226,7 @@ class App extends React.Component {
           </div>
 
           <div className="grid-flex-cell pet-main">
-            <img src={petImage} style={{backgroundColor: '#e6eaed'}} />
+            <img src={petImage} />
             <div className="status-box-mobile">
               <h4>STATE: <span className={statusClass}>{petState.toUpperCase()}</span></h4>
             </div>
