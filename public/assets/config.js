@@ -29,10 +29,10 @@ PetBox = function () {
   // see website for more ascii symbols:
   // http://jonsatrom.com/etc/hearts.html
   this.ASCII_ICON = '&hearts;';
-  this.DIALOG_MESSAGE = 'Hello!';
+  this.DIALOG_MESSAGE = `Hello!`;
   this.WIN_MESSAGE = `${this.PET_NAME} is a happy pet. You win!`;
-  this.PET_HAPPY = './assets/happypet.png';
-  this.PET_SAD = './assets/sadpet.png';
+  this.PET_HAPPY = './assets/happypet1.png';
+  this.PET_SAD = './assets/sadpet1.png';
   
   this.MESSAGES = messages;
   this.VISIBLE_BUTTONS = visibleButtons;
